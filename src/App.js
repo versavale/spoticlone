@@ -6,43 +6,40 @@ class App extends Component {
     super(props);
   
   this.state = {
-    userInput: '', 
-/*     selectedBand: '', */
+    userInput: '',
     url: ''
   }
 
   this.handleChange = this.handleChange.bind(this);
-/*   this.handleSubmit = this.handleSubmit.bind(this); */
+  this.fetchURL = this.fetchURL.bind(this);
   this.fetchData = this.fetchData.bind(this);
 
   }
-/*   handleSubmit(){
-    const band = this.state.userInput.toString();
-    this.setState({
-      selectedBand: band
-    });
-  } */
+
   handleChange(e){
     this.setState({
       userInput: e.target.value
     });
   }
 
-  fetchData() {
+  fetchURL() {
     const band = this.state.userInput.toString();
     const deezerUrl = 'https://api.deezer.com/artist/' + band;
     this.setState({
       url: deezerUrl
     });
-    /* fetch(deezerUrl, {method: 'GET', mode: 'no-cors'})
+  }
+
+  fetchData() {
+    fetch(this.state.url, {method: 'GET', mode: 'no-cors'})
     .then(res => res.json())
     .then((out) => {
+
         console.log('Output: ', out);
-}).catch(err => console.error(err)); */
+}).catch(err => console.error(err));
   }
 
   render() {
-    const displayBand = this.state.selectedBand;
     const url = this.state.url;
     return (
       <div className="App">
@@ -50,9 +47,9 @@ class App extends Component {
           <input onChange = {this.handleChange}
           value= {this.state.UserInput}
           placeholder="your favorite artist"></input>
-          <button onClick={this.fetchData}>Search</button>
+          <button onClick={this.fetchURL}>Search</button>
         </div>
-        <a href={url}>{url}</a>
+        <a href={url} target="_blank">{url}</a>
       </div>
     );
   }
