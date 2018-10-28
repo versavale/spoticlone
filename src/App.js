@@ -30,7 +30,7 @@ class App extends Component {
 
   fetchData() {
     const band = this.state.userInput.toString();
-    const deezerUrl = 'https://api.deezer.com/' + band;
+    const deezerUrl = 'https://api.deezer.com/artist/' + band;
     this.setState({
       url: deezerUrl
     });
@@ -52,7 +52,7 @@ class App extends Component {
           placeholder="your favorite artist"></input>
           <button onClick={this.fetchData}>Search</button>
         </div>
-        <p>{url}</p>
+        <a href={url}>{url}</a>
       </div>
     );
   }
