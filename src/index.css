@@ -1,2 +1,33 @@
 body {
-  background-color: red; }
+  background-color: white; }
+
+.wrapper {
+  width: 60%;
+  height: 400px;
+  margin: 50px auto;
+  border: 1px solid black;
+  border-radius: 6px;
+  text-align: center; }
+
+input {
+  border: 1px solid black;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 30px;
+  outline: none;
+  padding: 5px;
+  width: 400px; }
+
+button {
+  background-color: #669999;
+  border: 1px solid black;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  padding: 10px 10px;
+  text-decoration: none;
+  transition: .5s ease; }
+  button:hover {
+    background-color: #3d5b5b; }
