@@ -26,7 +26,7 @@ class App extends Component {
 
   fetchData() {
     const band = this.state.userInput.replace(/ /g,"-");
-    const link = this.state.tracklink;
+    /* const link = this.state.tracklink; */
     const fetch_url = 'https://api.deezer.com/search/artist/?q=' + band +'&index=0&limit=1&output=json';
       fetch(fetch_url, {method: 'GET', mode: 'cors'})
         .then(response => response.json())
