@@ -4,9 +4,7 @@ body {
 
 .wrapper {
   width: 60%;
-  height: 400px;
   margin: 50px auto;
-  border: 1px solid black;
   border-radius: 6px;
   text-align: center;
 }
@@ -36,4 +34,23 @@ button {
   &:hover{
     background-color: #3d5b5b;
   }
+}
+
+ .imgWrapper {
+  border-radius: 50%;
+  margin: 0 auto;
+  height: 150px;
+  width: 150px;
+} 
+
+.artistImg, .trackPic {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  color: transparent;
+}
+
+.tracks__wrapper {
+  background-color: red;
+  height: 400px;
 }

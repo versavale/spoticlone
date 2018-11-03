@@ -7,12 +7,12 @@ class App extends Component {
   
   this.state = {
     userInput: '',
-    pic: ''
+    pic: '', 
+    tracklink: ''
   }
 
   this.handleChange = this.handleChange.bind(this);
   this.fetchData = this.fetchData.bind(this);
-
   }
 
   handleChange(e){
@@ -28,13 +28,16 @@ class App extends Component {
         .then(response => response.json())
         .then(json => 
           {this.setState({ 
-            pic: json.data[0].picture_big});
+            pic: json.data[0].picture_big,
+            tracklink: json.data[0].tracklist
+          });
       })
       .catch(err => console.error(err));
   }
 
   render() {
     const artistPicture = this.state.pic;
+    const tracklist = this.state.tracklink;
     return (
       <div className="App">
         <div className="wrapper">
@@ -43,12 +46,62 @@ class App extends Component {
           placeholder="your favorite artist"></input>
           <button onClick={this.fetchData}>Search</button>
         </div>
-        <div>
-        <img src={artistPicture} alt="Cheetah!" />
+        <div className="imgWrapper">
+        <img className="artistImg" src={artistPicture} alt=""/>
         </div>
+        <p>{tracklist}</p>
+        <Tracks passedVal={this.state.tracklink}/>
       </div>
     );
   }
 }
 
+
+class Tracks extends Component {
+  constructor(props){
+    super(props);
+
+   this.state = {
+/*     tr1Title: '',
+    tr1Pic: '',
+    tr1File: '',
+    passedVal: '' */
+  }
+
+  this.fetchTracks = this.fetchTracks.bind();
+  }
+
+  
+  fetchTracks() {
+    /* const link = this.props.passedVal; */
+/*       fetch(link, {method: 'GET', mode: 'cors'})
+        .then(response => response.json())
+        .then(json => 
+          {this.setState({ 
+            tr1Title: json.data[0].title,
+            tr1Pic: json.data[0].album.cover_medium,
+            tr1File: json.data[0].preview
+          });
+      })
+      .catch(err => console.error(err)); */
+  } 
+  render() {
+/*     const trackTitle = this.state.tr1Title;
+    const trackPic = this.state.tr1Pic; */
+    /* const trackAudio = this.state.tr1File; */
+    const link = this.props.passedVal;
+    return (
+      <div className="Tracks">
+        <div className="tracks__wrapper">
+        <button onClick={this.fetchTracks}></button>
+          <p>{link}</p>
+          {/* <img className="trackPic" src={trackPic} alt=""/> */}
+        </div>
+      </div>
+    );
+  }
+
+
+
+}
 export default App;
