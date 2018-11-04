@@ -8,7 +8,6 @@ class App extends Component {
   this.state = {
     userInput: '',
     pic: '', 
-    id: '',
     tracklink: ''
   }
 
@@ -31,7 +30,6 @@ class App extends Component {
           {this.setState({ 
             pic: json.data[0].picture_big,
             tracklink: json.data[0].tracklist,
-            id: json.data[0].id,
           })
   })
       .catch(err => console.error('ERRORE:' + err));
@@ -126,13 +124,17 @@ render() {
           <div className="title-wrap">
             <p>{this.state.tr3Title}</p>
             </div>
+            <div className="cover-wrap">
             <img className="track-cover" src={this.state.tr3Pic} alt=""/>
+            </div>
           </div>
           <div className="track-wrap">
             <div className="title-wrap">
             <p>{this.state.tr4Title}</p>
             </div>
+            <div className="cover-wrap">
             <img className="track-cover" src={this.state.tr4Pic} alt=""/>
+            </div>
           </div>
         </div>
         </div>

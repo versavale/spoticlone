@@ -9,7 +9,7 @@ p {
   display: grid;
   grid-template-columns: 1fr auto;
   width: 60%;
-  margin: 50px auto;
+  margin: 20px auto 0 auto;
   border-radius: 6px;
   text-align: center; }
 
