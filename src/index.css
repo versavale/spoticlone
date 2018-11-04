@@ -71,3 +71,5 @@ input {
       font-weight: bold;
       height: 50px;
       margin-bottom: 10px; }
+    .tracksWrapper .track-wrap .track-cover {
+      cursor: pointer !important; }
