@@ -9,28 +9,11 @@ class App extends Component {
     userInput: '',
     pic: '', 
     id: '',
-    tracklink: '',
-
-    tr1Title: '',
-    tr1Pic: '',
-    tr1File: '',
-
-    tr2Title: '',
-    tr2Pic: '',
-    tr2File: '',
-
-    tr3Title: '',
-    tr3Pic: '',
-    tr3File: '',
-
-    tr4Title: '',
-    tr4Pic: '',
-    tr4File: '',
+    tracklink: ''
   }
 
   this.handleChange = this.handleChange.bind(this);
   this.fetchData = this.fetchData.bind(this);
-  this.fetchTracks = this.fetchTracks.bind(this);
   }
 
   handleChange(e){
@@ -54,8 +37,52 @@ class App extends Component {
       .catch(err => console.error('ERRORE:' + err));
   } 
 
+
+render() {
+  return (
+    <div className="App">
+      <div className="searchWrapper">
+        <input onChange = {this.handleChange}
+        value= {this.state.UserInput}
+        placeholder="your favorite artist"></input>
+        <button className="search-btn" onClick={this.fetchData}>Search</button>
+      </div>
+  <Fetch {...this.state}/>
+    </div>
+  );
+}
+}
+
+
+
+
+  class Fetch extends Component {
+    constructor(props){
+      super(props);
+  
+  this.state = {
+
+    tr1Title: '',
+    tr1Pic: '',
+    tr1File: '',
+
+    tr2Title: '',
+    tr2Pic: '',
+    tr2File: '',
+
+    tr3Title: '',
+    tr3Pic: '',
+    tr3File: '',
+
+    tr4Title: '',
+    tr4Pic: '',
+    tr4File: ''
+  }
+  this.fetchTracks = this.fetchTracks.bind(this);
+  }
+
   fetchTracks(){
-    const link= this.state.tracklink;
+    const link= this.props.tracklink;
     fetch(link, {method: 'GET', mode: 'cors'})
     .then(response => response.json())
     .then(json => 
@@ -71,10 +98,7 @@ class App extends Component {
           tr3File: json.data[2].preview,
           tr4Title: json.data[3].title,
           tr4Pic: json.data[3].album.cover_medium,
-          tr4File: json.data[3].preview,
-          tr4Title: json.data[4].title,
-          tr4Pic: json.data[4].album.cover_medium,
-          tr4File: json.data[4].preview,
+          tr4File: json.data[3].preview
         })
     }) 
         .catch(err => console.error('ERRORE:' + err));
@@ -82,18 +106,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="searchWrapper">
-          <input onChange = {this.handleChange}
-          value= {this.state.UserInput}
-          placeholder="your favorite artist"></input>
-          <button className="search-btn" onClick={this.fetchData}>Search</button>
-        </div>
-        <div className="imgWrapper">
-          <button className="image-btn" onClick={this.fetchTracks}>
-            <img className="artistImg" src={this.state.pic} alt=""/>
-          </button>
-        </div>
+      <div className="Fetch">
+      <div className="imgWrapper">
+      <button className="image-btn" onClick={this.fetchTracks}>
+        <img className="artistImg" src={this.props.pic} alt=""/>
+      </button>
+      </div>
         <div className="tracksWrapper">
           <div className="track-wrap">
           <div className="title-wrap">
@@ -120,9 +138,10 @@ class App extends Component {
             <img className="track-cover" src={this.state.tr4Pic} alt=""/>
           </div>
         </div>
-      </div>
+        </div>
     );
   }
-}
+  }
+
 
 export default App;
