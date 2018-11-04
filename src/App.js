@@ -57,21 +57,7 @@ render() {
   
   this.state = {
 
-    tr1Title: '',
-    tr1Pic: '',
-    tr1File: '',
-
-    tr2Title: '',
-    tr2Pic: '',
-    tr2File: '',
-
-    tr3Title: '',
-    tr3Pic: '',
-    tr3File: '',
-
-    tr4Title: '',
-    tr4Pic: '',
-    tr4File: ''
+    data: []
   }
   this.fetchTracks = this.fetchTracks.bind(this);
   }
@@ -81,63 +67,51 @@ render() {
     fetch(link, {method: 'GET', mode: 'cors'})
     .then(response => response.json())
     .then(json => 
-      {this.setState({ //USE MAP AT REFACTORING
-          tr1Title: json.data[0].title,
-          tr1Pic: json.data[0].album.cover_medium,
-          tr1File: json.data[0].preview,
-          tr2Title: json.data[1].title,
-          tr2Pic: json.data[1].album.cover_medium,
-          tr2File: json.data[1].preview,
-          tr3Title: json.data[2].title,
-          tr3Pic: json.data[2].album.cover_medium,
-          tr3File: json.data[2].preview,
-          tr4Title: json.data[3].title,
-          tr4Pic: json.data[3].album.cover_medium,
-          tr4File: json.data[3].preview
+      {this.setState({ //USE MAP?
+
+          data: [
+            [json.data[0].title,
+          json.data[0].album.cover_medium,
+          json.data[0].preview],
+
+          [json.data[1].title,
+          json.data[1].album.cover_medium,
+          json.data[1].preview],
+
+          [json.data[2].title,
+          json.data[2].album.cover_medium,
+          json.data[2].preview],
+          
+          [json.data[3].title,
+          json.data[3].album.cover_medium,
+          json.data[3].preview]]
         })
     }) 
         .catch(err => console.error('ERRORE:' + err));
   }
 
   render() {
+    let rendiamo = this.state.data;
     return (
       <div className="Fetch">
-      <div className="imgWrapper">
-      <button className="image-btn" onClick={this.fetchTracks}>
-        <img className="artistImg" src={this.props.pic} alt=""/>
-      </button>
+        <div className="imgWrapper">
+        <button className="image-btn" onClick={this.fetchTracks}>
+          <img className="artistImg" src={this.props.pic} alt=""/>
+        </button>
       </div>
-        <div className="tracksWrapper">
-          <div className="track-wrap">
-          <div className="title-wrap">
-            <p>{this.state.tr1Title}</p>
-            </div>
-            <img className="track-cover" src={this.state.tr1Pic} alt=""/>
-          </div>
-          <div className="track-wrap">
-          <div className="title-wrap">
-            <p>{this.state.tr2Title}</p>
-            </div>
-            <img className="track-cover" src={this.state.tr2Pic} alt=""/>
-          </div>
-          <div className="track-wrap">
-          <div className="title-wrap">
-            <p>{this.state.tr3Title}</p>
-            </div>
-            <div className="cover-wrap">
-            <img className="track-cover" src={this.state.tr3Pic} alt=""/>
-            </div>
-          </div>
-          <div className="track-wrap">
-            <div className="title-wrap">
-            <p>{this.state.tr4Title}</p>
-            </div>
-            <div className="cover-wrap">
-            <img className="track-cover" src={this.state.tr4Pic} alt=""/>
-            </div>
-          </div>
+      <div className="tracksWrapper">
+          {rendiamo.map(function(name){
+            return  <div className="track-wrap">
+                      <div className="title-wrap">
+                        <p>{name[0]}</p>
+                      </div>
+                      <div className="cover-wrap">
+                        <img className="track-cover" src={name[1]} alt=""/>
+                      </div>
+                    </div>
+          })}
         </div>
-        </div>
+      </div>
     );
   }
   }
