@@ -1,9 +1,15 @@
 body {
   background-color: white; }
 
-.wrapper {
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px; }
+
+.searchWrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
   width: 60%;
-  margin: 50px auto;
+  margin: 20px auto 0 auto;
   border-radius: 6px;
   text-align: center; }
 
@@ -11,37 +17,57 @@ input {
   border: 1px solid black;
   border-radius: 6px;
   display: block;
-  margin: 30px auto;
   outline: none;
   padding: 5px;
-  width: 60%; }
+  width: calc(100%-20px); }
 
-button {
+.search-btn {
   background-color: #669999;
   border: 1px solid black;
   border-radius: 6px;
   color: white;
   cursor: pointer;
   font-size: 14px;
+  margin-left: 20px;
+  max-width: 140px;
+  max-height: 40px;
   outline: none;
   padding: 10px 10px;
   text-decoration: none;
   transition: .5s ease; }
-  button:hover {
+  .search-btn:hover {
     background-color: #3d5b5b; }
 
 .imgWrapper {
   border-radius: 50%;
-  margin: 0 auto;
   height: 150px;
+  margin: 0 auto;
   width: 150px; }
 
 .artistImg, .trackPic {
   border-radius: 50%;
+  color: transparent;
+  cursor: pointer;
   height: 150px;
-  width: 150px;
-  color: transparent; }
+  width: 150px; }
 
-.tracks__wrapper {
-  background-color: red;
+.image-btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer !important; }
+  .image-btn:focus {
+    outline: none; }
+
+.tracksWrapper {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 400px; }
+  .tracksWrapper .track-wrap {
+    text-align: center; }
+    .tracksWrapper .track-wrap .title-wrap {
+      color: #3d5b5b;
+      font-weight: bold;
+      height: 50px;
+      margin-bottom: 10px; }
