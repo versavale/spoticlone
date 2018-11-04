@@ -43,8 +43,8 @@ render() {
     <div className="App">
       <div className="searchWrapper">
         <input onChange = {this.handleChange}
-        value= {this.state.UserInput}
-        placeholder="your favorite artist"></input>
+          value= {this.state.UserInput}
+          placeholder="your favorite artist"></input>
         <button className="search-btn" onClick={this.fetchData}>Search</button>
       </div>
   <Fetch {...this.state}/>
@@ -52,9 +52,6 @@ render() {
   );
 }
 }
-
-
-
 
   class Fetch extends Component {
     constructor(props){
