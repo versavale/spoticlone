@@ -8,14 +8,29 @@ class App extends Component {
   this.state = {
     userInput: '',
     pic: '', 
+    id: '',
     tracklink: '',
+
     tr1Title: '',
     tr1Pic: '',
-    tr1File: ''
+    tr1File: '',
+
+    tr2Title: '',
+    tr2Pic: '',
+    tr2File: '',
+
+    tr3Title: '',
+    tr3Pic: '',
+    tr3File: '',
+
+    tr4Title: '',
+    tr4Pic: '',
+    tr4File: '',
   }
 
   this.handleChange = this.handleChange.bind(this);
   this.fetchData = this.fetchData.bind(this);
+  this.fetchTracks = this.fetchTracks.bind(this);
   }
 
   handleChange(e){
@@ -26,7 +41,6 @@ class App extends Component {
 
   fetchData() {
     const band = this.state.userInput.replace(/ /g,"-");
-    /* const link = this.state.tracklink; */
     const fetch_url = 'https://api.deezer.com/search/artist/?q=' + band +'&index=0&limit=1&output=json';
       fetch(fetch_url, {method: 'GET', mode: 'cors'})
         .then(response => response.json())
@@ -35,36 +49,77 @@ class App extends Component {
             pic: json.data[0].picture_big,
             tracklink: json.data[0].tracklist,
             id: json.data[0].id,
-          })/* .fetch(link, {method: 'GET', mode: 'cors'})
-      .then(response => response.json())
-      .then(json => 
-        {this.setState({ 
-          tr1Title: json.data[0].title,
-          tr1Pic: json.data[0].album.cover_medium,
-          tr1File: json.data[0].preview
-        }); 
-    }) */
+          })
   })
-      .catch(err => console.error(err));
+      .catch(err => console.error('ERRORE:' + err));
   } 
 
+  fetchTracks(){
+    const link= this.state.tracklink;
+    fetch(link, {method: 'GET', mode: 'cors'})
+    .then(response => response.json())
+    .then(json => 
+      {this.setState({ //USE MAP AT REFACTORING
+          tr1Title: json.data[0].title,
+          tr1Pic: json.data[0].album.cover_medium,
+          tr1File: json.data[0].preview,
+          tr2Title: json.data[1].title,
+          tr2Pic: json.data[1].album.cover_medium,
+          tr2File: json.data[1].preview,
+          tr3Title: json.data[2].title,
+          tr3Pic: json.data[2].album.cover_medium,
+          tr3File: json.data[2].preview,
+          tr4Title: json.data[3].title,
+          tr4Pic: json.data[3].album.cover_medium,
+          tr4File: json.data[3].preview,
+          tr4Title: json.data[4].title,
+          tr4Pic: json.data[4].album.cover_medium,
+          tr4File: json.data[4].preview,
+        })
+    }) 
+        .catch(err => console.error('ERRORE:' + err));
+  }
+
   render() {
-    const artistPicture = this.state.pic;
-    const tracklist = this.state.tracklink;
-    const track1Title = this.state.tr1Title;
     return (
       <div className="App">
-        <div className="wrapper">
+        <div className="searchWrapper">
           <input onChange = {this.handleChange}
           value= {this.state.UserInput}
           placeholder="your favorite artist"></input>
-          <button onClick={this.fetchData}>Search</button>
+          <button className="search-btn" onClick={this.fetchData}>Search</button>
         </div>
         <div className="imgWrapper">
-        <img className="artistImg" src={artistPicture} alt=""/>
+          <button className="image-btn" onClick={this.fetchTracks}>
+            <img className="artistImg" src={this.state.pic} alt=""/>
+          </button>
         </div>
-        <p>{tracklist}</p>
-        <p>{track1Title}</p>
+        <div className="tracksWrapper">
+          <div className="track-wrap">
+          <div className="title-wrap">
+            <p>{this.state.tr1Title}</p>
+            </div>
+            <img className="track-cover" src={this.state.tr1Pic} alt=""/>
+          </div>
+          <div className="track-wrap">
+          <div className="title-wrap">
+            <p>{this.state.tr2Title}</p>
+            </div>
+            <img className="track-cover" src={this.state.tr2Pic} alt=""/>
+          </div>
+          <div className="track-wrap">
+          <div className="title-wrap">
+            <p>{this.state.tr3Title}</p>
+            </div>
+            <img className="track-cover" src={this.state.tr3Pic} alt=""/>
+          </div>
+          <div className="track-wrap">
+            <div className="title-wrap">
+            <p>{this.state.tr4Title}</p>
+            </div>
+            <img className="track-cover" src={this.state.tr4Pic} alt=""/>
+          </div>
+        </div>
       </div>
     );
   }
