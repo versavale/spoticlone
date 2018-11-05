@@ -84,7 +84,24 @@ render() {
           
           [json.data[3].title,
           json.data[3].album.cover_medium,
-          json.data[3].preview]]
+          json.data[3].preview],
+
+          [json.data[4].title,
+          json.data[4].album.cover_medium,
+          json.data[4].preview],
+
+          [json.data[5].title,
+          json.data[5].album.cover_medium,
+          json.data[5].preview],
+
+          [json.data[6].title,
+          json.data[6].album.cover_medium,
+          json.data[6].preview],
+
+          [json.data[7].title,
+          json.data[7].album.cover_medium,
+          json.data[7].preview]
+        ]
         })
     }) 
         .catch(err => console.error('ERRORE:' + err));
