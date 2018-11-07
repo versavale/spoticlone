@@ -8,7 +8,8 @@ class App extends Component {
   this.state = {
     userInput: '',
     pic: '', 
-    tracklink: ''
+    tracklink: '', 
+    data: []
   }
 
   this.handleChange = this.handleChange.bind(this);
@@ -30,13 +31,53 @@ class App extends Component {
           {this.setState({ 
             pic: json.data[0].picture_big,
             tracklink: json.data[0].tracklist,
-          })
+          }); 
+          fetch(this.state.tracklink, {method: 'GET', mode: 'cors'})
+          .then(response => response.json())
+          .then(json => 
+            {this.setState({
+              data: [
+                [json.data[0].title,
+              json.data[0].album.cover_medium,
+              json.data[0].preview],
+    
+              [json.data[1].title,
+              json.data[1].album.cover_medium,
+              json.data[1].preview],
+    
+              [json.data[2].title,
+              json.data[2].album.cover_medium,
+              json.data[2].preview],
+              
+              [json.data[3].title,
+              json.data[3].album.cover_medium,
+              json.data[3].preview],
+    
+              [json.data[4].title,
+              json.data[4].album.cover_medium,
+              json.data[4].preview],
+    
+              [json.data[5].title,
+              json.data[5].album.cover_medium,
+              json.data[5].preview],
+    
+              [json.data[6].title,
+              json.data[6].album.cover_medium,
+              json.data[6].preview],
+    
+              [json.data[7].title,
+              json.data[7].album.cover_medium,
+              json.data[7].preview]
+            ]
+            });
+          });
   })
       .catch(err => console.error('ERRORE:' + err));
   } 
 
 
 render() {
+  let rendiamo = this.state.data;
   return (
     <div className="App">
       <div className="searchWrapper">
@@ -45,78 +86,10 @@ render() {
           placeholder="your favorite artist"></input>
         <button className="search-btn" onClick={this.fetchData}>Search</button>
       </div>
-  <Fetch {...this.state}/>
-    </div>
-  );
-}
-}
-
-  class Fetch extends Component {
-    constructor(props){
-      super(props);
-  
-  this.state = {
-
-    data: []
-  }
-  this.fetchTracks = this.fetchTracks.bind(this);
-  }
-
-  fetchTracks(){
-    const link= this.props.tracklink;
-    fetch(link, {method: 'GET', mode: 'cors'})
-    .then(response => response.json())
-    .then(json => 
-      {this.setState({ //USE MAP?
-
-          data: [
-            [json.data[0].title,
-          json.data[0].album.cover_medium,
-          json.data[0].preview],
-
-          [json.data[1].title,
-          json.data[1].album.cover_medium,
-          json.data[1].preview],
-
-          [json.data[2].title,
-          json.data[2].album.cover_medium,
-          json.data[2].preview],
-          
-          [json.data[3].title,
-          json.data[3].album.cover_medium,
-          json.data[3].preview],
-
-          [json.data[4].title,
-          json.data[4].album.cover_medium,
-          json.data[4].preview],
-
-          [json.data[5].title,
-          json.data[5].album.cover_medium,
-          json.data[5].preview],
-
-          [json.data[6].title,
-          json.data[6].album.cover_medium,
-          json.data[6].preview],
-
-          [json.data[7].title,
-          json.data[7].album.cover_medium,
-          json.data[7].preview]
-        ]
-        })
-    }) 
-        .catch(err => console.error('ERRORE:' + err));
-  }
-
-  render() {
-    let rendiamo = this.state.data;
-    return (
-      <div className="Fetch">
-        <div className="imgWrapper">
-        <button className="image-btn" onClick={this.fetchTracks}>
-          <img className="artistImg" src={this.props.pic} alt=""/>
-        </button>
+      <div className="imgWrapper">
+          <img className="artistImg" src={this.state.pic} alt=""/>
       </div>
-      <div className="tracksWrapper">
+      <div className='tracksWrapper'>
           {rendiamo.map(function(name){
             return  <div className="track-wrap">
                       <div className="title-wrap">
@@ -127,11 +100,20 @@ render() {
                       </div>
                     </div>
           })}
+          </div>
         </div>
-      </div>
+  );
+}
+}
+
+/*    class Play extends Component {
+    constructor(props){
+      super(props);
+  
+    }
+  render() {
+    return (
     );
   }
-  }
-
-
+  } */
 export default App;
