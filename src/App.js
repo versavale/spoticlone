@@ -77,7 +77,6 @@ class App extends Component {
 
 
 render() {
-  let rendiamo = this.state.data;
   return (
     <div className="App">
       <div className="searchWrapper">
@@ -89,31 +88,35 @@ render() {
       <div className="imgWrapper">
           <img className="artistImg" src={this.state.pic} alt=""/>
       </div>
-      <div className='tracksWrapper'>
+      <Play {...this.state}/>
+        </div>
+  );
+}
+}
+
+   class Play extends Component {
+
+  render() {
+    let rendiamo = this.props.data;
+
+    return (
+      <div className="Play">
+            <div className='tracksWrapper'>
           {rendiamo.map(function(name){
             return  <div className="track-wrap">
                       <div className="title-wrap">
                         <p>{name[0]}</p>
                       </div>
                       <div className="cover-wrap">
-                        <img className="track-cover" src={name[1]} alt=""/>
+                      <img className="track-cover" src={name[1]} alt="" onClick={document.getElementById('audio_play')}/>
                       </div>
                     </div>
           })}
-          </div>
-        </div>
-  );
-}
-}
-
-/*    class Play extends Component {
-    constructor(props){
-      super(props);
-  
-    }
-  render() {
-    return (
+      </div>
+      <script>
+      </script>
+    </div>
     );
   }
-  } */
+  }
 export default App;
