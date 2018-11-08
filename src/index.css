@@ -47,15 +47,13 @@ input {
 .artistImg, .trackPic {
   border-radius: 50%;
   color: transparent;
-  cursor: pointer;
   height: 150px;
   width: 150px; }
 
 .image-btn {
   background-color: transparent;
   border: none;
-  border-radius: 50%;
-  cursor: pointer !important; }
+  border-radius: 50%; }
   .image-btn:focus {
     outline: none; }
 
