@@ -103,12 +103,18 @@ render() {
       <div className="Play">
             <div className='tracksWrapper'>
           {rendiamo.map(function(name){
+            let audio = new Audio(name[2]);
+
+             function togglePlay() {
+              return audio.paused ? audio.play() : audio.pause();
+            }; 
+
             return  <div className="track-wrap">
                       <div className="title-wrap">
                         <p>{name[0]}</p>
                       </div>
                       <div className="cover-wrap">
-                      <img className="track-cover" src={name[1]} alt="" onClick={document.getElementById('audio_play')}/>
+                      <img className="track-cover" src={name[1]} alt="" onClick={togglePlay} muted/>
                       </div>
                     </div>
           })}
