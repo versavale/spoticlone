@@ -37,35 +37,43 @@ class App extends Component {
           .then(json => 
             {this.setState({
               data: [
-                [json.data[0].title,
+                [json.data[0].id,
+              json.data[0].title,
               json.data[0].album.cover_medium,
               json.data[0].preview],
-    
-              [json.data[1].title,
+
+              [json.data[1].id,
+              json.data[1].title,
               json.data[1].album.cover_medium,
               json.data[1].preview],
     
-              [json.data[2].title,
+              [json.data[2].id,
+              json.data[2].title,
               json.data[2].album.cover_medium,
               json.data[2].preview],
               
-              [json.data[3].title,
+              [json.data[3].id,
+              json.data[3].title,
               json.data[3].album.cover_medium,
               json.data[3].preview],
     
-              [json.data[4].title,
+              [json.data[4].id,
+                json.data[4].title,
               json.data[4].album.cover_medium,
               json.data[4].preview],
     
-              [json.data[5].title,
+              [json.data[5].id,
+              json.data[5].title,
               json.data[5].album.cover_medium,
               json.data[5].preview],
     
-              [json.data[6].title,
+              [json.data[6].id,
+              json.data[6].title,
               json.data[6].album.cover_medium,
               json.data[6].preview],
     
-              [json.data[7].title,
+              [json.data[7].id,
+              json.data[7].title,
               json.data[7].album.cover_medium,
               json.data[7].preview]
             ]
@@ -79,6 +87,7 @@ class App extends Component {
 render() {
   return (
     <div className="App">
+      <h1 className="mainHeader">Spotify Clone</h1>
       <div className="searchWrapper">
         <input onChange = {this.handleChange}
           value= {this.state.UserInput}
@@ -88,33 +97,33 @@ render() {
       <div className="imgWrapper">
           <img className="artistImg" src={this.state.pic} alt=""/>
       </div>
-      <Play {...this.state}/>
+      <Music {...this.state}/>
         </div>
   );
 }
 }
 
-   class Play extends Component {
+   class Music extends Component {
 
   render() {
     let rendiamo = this.props.data;
 
     return (
-      <div className="Play">
+      <div className="Music">
             <div className='tracksWrapper'>
           {rendiamo.map(function(name){
-            let audio = new Audio(name[2]);
+            let audio = new Audio(name[3]);
 
              function togglePlay() {
               return audio.paused ? audio.play() : audio.pause();
-            }; 
+            };
 
-            return  <div className="track-wrap">
+            return  <div className="track-wrap" key={name[0]}>
                       <div className="title-wrap">
-                        <p>{name[0]}</p>
+                        <p>{name[1]}</p>
                       </div>
                       <div className="cover-wrap">
-                      <img className="track-cover" src={name[1]} alt="" onClick={togglePlay} muted/>
+                      <img className="track-cover" src={name[2]} alt="" onClick={togglePlay} muted/>
                       </div>
                     </div>
           })}
