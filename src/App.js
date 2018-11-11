@@ -114,7 +114,7 @@ render() {
           {rendAudio.map(function(name){
             let audio = new Audio(name[3]);
 
-      function togglePlay() {
+            function togglePlay() {
               return audio.paused ? audio.play() : audio.pause();
             }; 
 
