@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import play from './play.svg';
+import pause from './pause.svg';
 
 class App extends Component {
   constructor(props){
