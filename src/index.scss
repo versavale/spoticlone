@@ -93,8 +93,21 @@ input {
     margin-bottom: 10px;
   }
 
+
+  .cover-wrap {
+    position: relative;
+  }
   .track-cover {
     cursor: pointer !important;
   }
+
+  .play, .pause {
+    cursor: pointer;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 45px;
+    width: 30px;
+}
 }
 }

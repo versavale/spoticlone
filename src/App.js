@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import play from './play.svg';
-import pause from './pause.svg';
 
 class App extends Component {
   constructor(props){
@@ -126,6 +124,8 @@ render() {
                       </div>
                       <div className="cover-wrap">
                       <img className="track-cover" id={"audio"} src={name[2]} alt="" onClick={togglePlay}/>
+{/*                       <img className="play" src={'/img/play.svg'} alt="" />
+                      <img className="pause" src={'img/pause.svg'} alt="" /> */}
                       </div>
                     </div>
           })}

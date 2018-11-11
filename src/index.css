@@ -75,5 +75,14 @@ input {
       font-weight: bold;
       height: 50px;
       margin-bottom: 10px; }
+    .tracksWrapper .track-wrap .cover-wrap {
+      position: relative; }
     .tracksWrapper .track-wrap .track-cover {
       cursor: pointer !important; }
+    .tracksWrapper .track-wrap .play, .tracksWrapper .track-wrap .pause {
+      cursor: pointer;
+      position: absolute;
+      background-repeat: no-repeat;
+      top: 0;
+      left: 45px;
+      width: 30px; }
