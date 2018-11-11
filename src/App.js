@@ -106,24 +106,24 @@ render() {
    class Music extends Component {
 
   render() {
-    let rendiamo = this.props.data;
+    let rendAudio = this.props.data;
 
     return (
       <div className="Music">
             <div className='tracksWrapper'>
-          {rendiamo.map(function(name){
+          {rendAudio.map(function(name){
             let audio = new Audio(name[3]);
 
-             function togglePlay() {
+      function togglePlay() {
               return audio.paused ? audio.play() : audio.pause();
-            };
+            }; 
 
             return  <div className="track-wrap" key={name[0]}>
                       <div className="title-wrap">
                         <p>{name[1]}</p>
                       </div>
                       <div className="cover-wrap">
-                      <img className="track-cover" src={name[2]} alt="" onClick={togglePlay} muted/>
+                      <img className="track-cover" id={"audio"} src={name[2]} alt="" onClick={togglePlay}/>
                       </div>
                     </div>
           })}
