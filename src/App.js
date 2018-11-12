@@ -103,7 +103,7 @@ render() {
 }
 }
 
-   class Music extends Component {
+  class Music extends Component {
 
   render() {
     let rendAudio = this.props.data;
@@ -115,7 +115,7 @@ render() {
             let audio = new Audio(name[3]);
 
             function togglePlay() {
-              return audio.paused ? audio.play() : audio.pause();
+          return audio.paused ? audio.play() : audio.pause(); 
             }; 
 
             return  <div className="track-wrap" key={name[0]}>
@@ -124,9 +124,9 @@ render() {
                       </div>
                       <div className="cover-wrap">
                       <img className="track-cover" id={"audio"} src={name[2]} alt="" onClick={togglePlay}/>
-{/*                       <img className="play" src={'/img/play.svg'} alt="" />
-                      <img className="pause" src={'img/pause.svg'} alt="" /> */}
-                      </div>
+{/*                   <img className="play" src={'/img/play.svg'} alt="" onClick={togglePlay} />
+                  <img className="pause" src={'/img/pause.svg'} alt="" onClick={togglePlay} /> */}
+                   </div>
                     </div>
           })}
       </div>

@@ -94,20 +94,42 @@ input {
   }
 
 
-  .cover-wrap {
+  .cover-wrap {  //container
     position: relative;
   }
-  .track-cover {
+
+  .track-cover {  //image
     cursor: pointer !important;
+    transition: .5s ease;
   }
 
-  .play, .pause {
-    cursor: pointer;
+  .play, .pause {  //middle
+    transition: .5s ease;
+    opacity: 0;
     position: absolute;
-    background-repeat: no-repeat;
-    top: 0;
-    left: 45px;
-    width: 30px;
-}
+    height: 150px;
+    width: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .cover-wrap:hover .track-cover {
+    cursor: pointer !important;
+    opacity: 0.3;
+  }
+  
+  .cover-wrap:hover .play {
+    cursor: pointer !important;
+    opacity: 1;
+  }
+
+  .cover-wrap:hover .pause {
+    cursor: pointer !important;
+    opacity: 1;
+  }
+
 }
 }
