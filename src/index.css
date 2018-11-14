@@ -1,5 +1,7 @@
 body {
-  background-color: black; }
+  background-color: black;
+  max-width: 1020px;
+  margin: 0 auto; }
 
 p {
   font-family: Arial, Helvetica, sans-serif;
@@ -52,8 +54,9 @@ input {
 .artistImg, .trackPic {
   border-radius: 50%;
   color: transparent;
-  height: 150px;
-  width: 150px; }
+  height: 120px;
+  width: 120px;
+  margin-top: 20px; }
 
 .image-btn {
   background-color: transparent;
@@ -71,21 +74,23 @@ input {
     text-align: center;
     margin-bottom: 40px; }
     .tracksWrapper .track-wrap .title-wrap {
-      color: #3d5b5b;
+      color: white;
       font-weight: bold;
       height: 50px;
-      margin-bottom: 10px; }
+      margin-bottom: 5px; }
     .tracksWrapper .track-wrap .cover-wrap {
       position: relative; }
     .tracksWrapper .track-wrap .track-cover {
       cursor: pointer !important;
-      transition: .5s ease; }
+      transition: .5s ease;
+      height: 120px;
+      width: 120px; }
     .tracksWrapper .track-wrap .play, .tracksWrapper .track-wrap .pause {
       transition: .5s ease;
       opacity: 0;
       position: absolute;
-      height: 150px;
-      width: 150px;
+      height: 120px;
+      width: 120px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

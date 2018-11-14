@@ -1,5 +1,7 @@
 body {
   background-color: black;
+  max-width: 1020px;
+  margin: 0 auto;
 }
 
 p {
@@ -61,8 +63,9 @@ input {
 .artistImg, .trackPic {
   border-radius: 50%;
   color: transparent;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
+  margin-top: 20px;
 }
 
 .image-btn {
@@ -87,10 +90,10 @@ input {
   margin-bottom: 40px;
   
   .title-wrap {
-    color: #3d5b5b;
+    color: white;
     font-weight: bold;
     height: 50px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
 
@@ -101,14 +104,16 @@ input {
   .track-cover {  //image
     cursor: pointer !important;
     transition: .5s ease;
+    height: 120px;
+    width: 120px;
   }
 
   .play, .pause {  //middle
     transition: .5s ease;
     opacity: 0;
     position: absolute;
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
