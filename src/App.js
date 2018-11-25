@@ -124,7 +124,7 @@ render() {
                       </div>
                       <div className="cover-wrap">
                       <img className="track-cover" id={"audio"} src={name[2]} alt="" onClick={togglePlay}/>
-{/*                   <img className="play" src={'/img/play.svg'} alt="" onClick={togglePlay} />
+            {/*   <img className="play" src={'/img/play.svg'} alt="" onClick={togglePlay} />
                   <img className="pause" src={'/img/pause.svg'} alt="" onClick={togglePlay} /> */}
                    </div>
                     </div>
