@@ -107,19 +107,29 @@ render() {
 
   render() {
     let rendAudio = this.props.data;
-    let click = [];
+    let playing = [];
 
     return (
       <div className="Music">
             <div className='tracksWrapper'>
           {rendAudio.map(function(name){
             let audio = new Audio(name[3]);
-            let clicked = rendAudio.indexOf(name);
+            let targeted = rendAudio.indexOf(name);
 
             function togglePlay() {
-              console.log(clicked);
-           audio.paused ? audio.play() && click.push(clicked) : audio.pause(); 
-            }; 
+              console.log(targeted);
+           if (audio.paused) {
+            audio.play();
+            playing.push(targeted);
+           } else { 
+             audio.pause();
+             let index = playing.indexOf(targeted);
+              if (index > -1) {
+                playing.splice(index, 1);
+              }
+            }
+            console.log(playing);
+          };
 
             return  <div className="track-wrap" key={name[0]}>
                       <div className="title-wrap">
