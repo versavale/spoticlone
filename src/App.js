@@ -115,7 +115,7 @@ render() {
 
   render() {
     let rendAudio = this.props.data;
-
+  
     return (
       <div className="Music">
             <div className='tracksWrapper'>
