@@ -37,45 +37,53 @@ class App extends Component {
           .then(json => 
             {this.setState({
               data: [
-                [json.data[0].id,
-              json.data[0].title,
-              json.data[0].album.cover_medium,
-              json.data[0].preview],
+                {id: json.data[0].id,
+              title: json.data[0].title,
+              cover: json.data[0].album.cover_medium,
+              song: json.data[0].preview, 
+              playing: 'false' },
 
-              [json.data[1].id,
-              json.data[1].title,
-              json.data[1].album.cover_medium,
-              json.data[1].preview],
+              {id: json.data[1].id,
+                title:json.data[1].title,
+                cover:json.data[1].album.cover_medium,
+                song:json.data[1].preview, 
+                playing: 'false'},
     
-              [json.data[2].id,
-              json.data[2].title,
-              json.data[2].album.cover_medium,
-              json.data[2].preview],
+                {id: json.data[2].id,
+                  title:json.data[2].title,
+                  cover:json.data[2].album.cover_medium,
+                  song:json.data[2].preview, 
+                  playing: 'false'},
               
-              [json.data[3].id,
-              json.data[3].title,
-              json.data[3].album.cover_medium,
-              json.data[3].preview],
+                {id: json.data[3].id,
+                  title:json.data[3].title,
+                  cover:json.data[3].album.cover_medium,
+                  song:json.data[3].preview, 
+                  playing: 'false'},
     
-              [json.data[4].id,
-                json.data[4].title,
-              json.data[4].album.cover_medium,
-              json.data[4].preview],
+                {id: json.data[4].id,
+                  title:json.data[4].title,
+                  cover:json.data[4].album.cover_medium,
+                  song:json.data[4].preview, 
+                  playing: 'false'},
     
-              [json.data[5].id,
-              json.data[5].title,
-              json.data[5].album.cover_medium,
-              json.data[5].preview],
+                {id: json.data[5].id,
+                  title:json.data[5].title,
+                  cover:json.data[5].album.cover_medium,
+                  song:json.data[5].preview, 
+                  playing: 'false'},
     
-              [json.data[6].id,
-              json.data[6].title,
-              json.data[6].album.cover_medium,
-              json.data[6].preview],
+                {id: json.data[6].id,
+                  title:json.data[6].title,
+                  cover:json.data[6].album.cover_medium,
+                  song:json.data[6].preview, 
+                  playing: 'false'},
     
-              [json.data[7].id,
-              json.data[7].title,
-              json.data[7].album.cover_medium,
-              json.data[7].preview]
+                {id: json.data[7].id,
+                  title:json.data[7].title,
+                  cover:json.data[7].album.cover_medium,
+                  song:json.data[7].preview, 
+                  playing: 'false'}
             ]
             });
           });
@@ -107,36 +115,31 @@ render() {
 
   render() {
     let rendAudio = this.props.data;
-    let playing = [];
 
     return (
       <div className="Music">
             <div className='tracksWrapper'>
-          {rendAudio.map(function(name){
-            let audio = new Audio(name[3]);
-            let targeted = rendAudio.indexOf(name);
+          {rendAudio.map(function(track){
+            let audio = new Audio(track.song);
 
             function togglePlay() {
-              console.log(targeted);
-           if (audio.paused) {
+           if (track.playing === 'false') {
             audio.play();
-            playing.push(targeted);
-           } else { 
-             audio.pause();
-             let index = playing.indexOf(targeted);
-              if (index > -1) {
-                playing.splice(index, 1);
-              }
+            track.playing = 'true';
+            console.log("play");
+           } else if (track.playing === 'true') {
+            audio.pause();
+            track.playing = 'false';
+            console.log("mute");
             }
-            console.log(playing);
           };
 
-            return  <div className="track-wrap" key={name[0]}>
+            return  <div className="track-wrap" key={track.id}>
                       <div className="title-wrap">
-                        <p>{name[1]}</p>
+                        <p>{track.title}</p>
                       </div>
                       <div className="cover-wrap">
-                      <img className="track-cover" id={"audio"} src={name[2]} alt="" onClick={togglePlay}/>
+                      <img className="track-cover" id={"audio"} src={track.cover} alt="" onClick={togglePlay}/>
             {/*   <img className="play" src={'/img/play.svg'} alt="" onClick={togglePlay} />
                   <img className="pause" src={'/img/pause.svg'} alt="" onClick={togglePlay} /> */}
                    </div>
