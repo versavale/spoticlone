@@ -3,6 +3,9 @@ import './App.css';
 
 
 class Music extends Component {
+   constructor(props){
+    super(props);
+  }
 
   render() {
     let rendAudio = this.props.data;
@@ -11,11 +14,13 @@ class Music extends Component {
       <div className="Music">
             <div className='tracksWrapper'>
           {rendAudio.map(function(track){
-            let audio = new Audio(track.song);
+            //let audio = new Audio(track.song); will be moved 1 level higher
 
             function handleClick() {
-              //on click, it must save the url of clicked song and send it to app.
-              this.props.playing = audio;//too easy
+              //on click, it must save the url of clicked song V
+              let song = track.song;
+              console.log(song);
+              //and send it to app X
           };
 
             return  <div className="track-wrap" key={track.id}>
