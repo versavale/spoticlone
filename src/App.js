@@ -12,7 +12,7 @@ class App extends Component {
     tracklink: '', 
     data: [],
     playing: '',
-    isMusicPlaying: false
+    musicOn: false
   }
 
   this.handleChange = this.handleChange.bind(this);
@@ -20,14 +20,27 @@ class App extends Component {
   this.playMusic = this.playMusic.bind(this);
   }
 
-  playMusic() {
+  playMusic(arg) {
+    let audio = new Audio(arg);
+    if (this.playing !== arg) {
+    this.setState({
+      playing: arg,
+      musicOn: true
+    });
+    audio.play();
+  
+  } else if (this.playing === arg && this.musicOn === true) {
+    audio.pause();
+    this.setState({
+      musicOn: false
+    });
+    audio.pause();
+  }
     //this must work with state.playing.
     //if playing is empty, playing becomes the clicked and the audio plays - isMusic true
     //if playing is full, playing replaces playing and the audio plays - isMusic true
     //if playing is full by the same song - is music false
-    /* this.setState({
-      playing: newSong
-    }); */
+    console.log(this.state.playing);
   }
 
   handleChange(e){
@@ -99,6 +112,7 @@ class App extends Component {
 
 
 render() {
+  let playMusic = this.playMusic;
   return (
     <div className="App">
       <h1 className="mainHeader">Spotify Clone</h1>
@@ -111,7 +125,7 @@ render() {
       <div className="imgWrapper">
           <img className="artistImg" src={this.state.pic} alt=""/>
       </div>
-      <Music {...this.state} handleClick={this.playMusic}/>
+      <Music {...this.state} playMusic = {playMusic.bind(this)}/>
         </div>
   );
 }
