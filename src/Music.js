@@ -12,7 +12,6 @@ class Music extends Component {
       <div className="Music">
             <div className='tracksWrapper'>
           {rendAudio.map(function(track){
-            //let audio = new Audio(track.song); will be moved 1 level higher
 
             return  <div className="track-wrap" key={track.id}>
                       <div className="title-wrap">
