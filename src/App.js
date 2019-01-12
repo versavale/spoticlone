@@ -56,7 +56,6 @@ class App extends Component {
     const PROXY = 'https://cors-anywhere.herokuapp.com';
     const band = this.state.userInput.replace(/ /g,"-");
     const fetch_url = `${PROXY}/${BASE_URL}/artist/?q= ` + band + '&index=0&limit=1&output=json';
-    console.log(fetch_url);
       fetch(fetch_url, {method: 'GET', mode: 'cors'})
         .then(response => response.json())
         .then(json => 
