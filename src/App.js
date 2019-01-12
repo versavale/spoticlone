@@ -53,8 +53,11 @@ class App extends Component {
   }
 
   fetchData() {
+    const BASE_URL = 'https://api.deezer.com/search/';
+    const PROXY = 'https://cors-anywhere.herokuapp.com';
     const band = this.state.userInput.replace(/ /g,"-");
-    const fetch_url = 'https://api.deezer.com/search/artist/?q=' + band +'&index=0&limit=1&output=json';
+    const fetch_url = `${PROXY}/${BASE_URL}/artist/?q= ` + band + '&index=0&limit=1&output=json';
+    console.log(fetch_url);
       fetch(fetch_url, {method: 'GET', mode: 'cors'})
         .then(response => response.json())
         .then(json => 
@@ -62,7 +65,7 @@ class App extends Component {
             pic: json.data[0].picture_big,
             tracklink: json.data[0].tracklist,
           }); 
-          fetch(this.state.tracklink, {method: 'GET', mode: 'cors'})
+          fetch(`${PROXY}/${this.state.tracklink}`, {method: 'GET', mode: 'cors'})
           .then(response => response.json())
           .then(json => 
             {this.setState({
