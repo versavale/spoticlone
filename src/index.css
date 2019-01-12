@@ -100,9 +100,3 @@ input {
     .tracksWrapper .track-wrap .cover-wrap:hover .track-cover {
       cursor: pointer !important;
       opacity: 0.3; }
-    .tracksWrapper .track-wrap .cover-wrap:hover .play {
-      cursor: pointer !important;
-      opacity: 1; }
-    .tracksWrapper .track-wrap .cover-wrap:hover .pause {
-      cursor: pointer !important;
-      opacity: 1; }
