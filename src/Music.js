@@ -23,8 +23,6 @@ class Music extends Component {
                     </div>
           })}
       </div>
-      <script>
-      </script>
     </div>
     );
   }
